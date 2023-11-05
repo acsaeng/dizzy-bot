@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import discord
 from responses.time import Time
 from responses.weather import Weather
+from responses.music import Music
 import helpers
 import constants
 
@@ -40,6 +41,9 @@ class DizzyBot:
         city = helpers.getCityFromText(message)
         weather = Weather(city)
         return weather.formatResponse()
+      elif any(word in user_message_lower for word in constants.MUSIC_KEYWORDS):
+        music = Music()
+        return music.formatResponse()
 
   async def send_message(self, message):
     # try:
