@@ -1,9 +1,6 @@
-import os
-from dotenv import load_dotenv
-import requests
 import discord
-
-load_dotenv()
+import api
+import constants
 
 class Weather:
   def __init__(self, city):
@@ -19,21 +16,22 @@ class Weather:
     self.__getLocalWeatherData()
   
   def __getLocalWeatherData(self):
-    response = requests.get(os.getenv('WEATHER_API_URL'), params={
-      'key': os.getenv('WEATHER_API_API_KEY'),
-      'q': self.city
-    })
+    geocoding_response = api.getGeocodingDataByCity(self.city)
 
-    if response.status_code == 200:
-      response = response.json()
-      self.city = response['location']['name']
-      self.country = response['location']['country']
-      self.temperature = round(response['current']['temp_c'])
-      self.condition = response['current']['condition']['text']
-      self.precipitation = round(response['current']['precip_mm'])
-      self.humidity = response['current']['humidity']
-      self.wind = round(response['current']['wind_kph'])
-      self.icon_url = f'http:{response["current"]["condition"]["icon"]}'
+    if geocoding_response:
+      self.city = geocoding_response['name']
+      self.country = geocoding_response['country']
+    
+      weather_response = api.getWeatherDataByLocation(geocoding_response['latitude'], geocoding_response['longitude'])
+
+      if weather_response:
+        self.country = weather_response['location']['country']  
+        self.temperature = round(weather_response['current']['temp_c'])
+        self.condition = weather_response['current']['condition']['text']
+        self.precipitation = round(weather_response['current']['precip_mm'])
+        self.humidity = weather_response['current']['humidity']
+        self.wind = round(weather_response['current']['wind_kph'])
+        self.icon_url = f'http:{weather_response["current"]["condition"]["icon"]}'
 
   def formatResponse(self):
     if self.city and self.temperature:
@@ -43,7 +41,7 @@ class Weather:
       embed.add_field(name="Humidity", value=f'{self.humidity}%')
       embed.add_field(name="Wind", value=f'{self.wind} km/h')
       embed.set_thumbnail(url=self.icon_url)
-      return { 'content': f'Here is the current weather forecast for {self.city}', 'embed': embed }
+      return { 'content': f'{constants.WEATHER_RESPONSE_SUCCESS} {self.city}', 'embed': embed }
     
     else:
-      return 'Sorry, I could not find the weather forecast :( \nPlease try another city...'
+      return { 'content': constants.WEATHER_RESPONSE_ERROR, 'embed': None }

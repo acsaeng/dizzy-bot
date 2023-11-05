@@ -19,12 +19,13 @@ class Time:
       self.city = geocoding_response['name']
       self.country = geocoding_response['country']
 
-      world_time_response = api.getWorldTimeDataByCity(geocoding_response['latitude'], geocoding_response['longitude'])
-                                                      
-      # Converting date and time to MM, DD, YYYY and HH:MM formats
-      date_list = list(map(int, world_time_response['datetime'].split()[0].split('-')))
-      self.date = date(day=date_list[2], month=date_list[1], year=date_list[0]).strftime('%B %#d, %Y')
-      self.time = datetime.strptime(world_time_response['datetime'].split()[1], '%H:%M:%S').strftime('%I:%M %p')
+      world_time_response = api.getWorldTimeDataByLocation(geocoding_response['latitude'], geocoding_response['longitude'])
+
+      if world_time_response:                                     
+        # Converting date and time to MM, DD, YYYY and HH:MM formats
+        date_list = list(map(int, world_time_response['datetime'].split()[0].split('-')))
+        self.date = date(day=date_list[2], month=date_list[1], year=date_list[0]).strftime('%B %#d, %Y')
+        self.time = datetime.strptime(world_time_response['datetime'].split()[1], '%H:%M:%S').strftime('%I:%M %p')
 
   def formatResponse(self):
     if self.city and self.time:
