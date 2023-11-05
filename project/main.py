@@ -6,8 +6,3 @@ def main():
 
 if __name__ == '__main__':
   main()
-
-
-# TO DO:
-# Fix error handling
-# Fix two-worded country geotext

@@ -1,8 +1,10 @@
 import os
 from dotenv import load_dotenv
 import discord
+from responses.time import Time
 from responses.weather import Weather
 import helpers
+import constants
 
 load_dotenv()
 
@@ -27,17 +29,21 @@ class DizzyBot:
     client.run(self.token)
 
   def handle_response(self, message):
-    user_message = message.lower()
+    user_message_lower = message.lower()
 
-    if 'dizzy' in user_message:
-      if 'weather' in user_message:
-        city = helpers.getCityFromText(user_message)
+    if constants.BOT_NAME in user_message_lower:
+      if any(word in user_message_lower for word in constants.TIME_KEYWORDS):
+        city = helpers.getCityFromText(message)
+        time = Time(city)
+        return time.formatResponse()
+      elif any(word in user_message_lower for word in constants.WEATHER_KEYWORDS):
+        city = helpers.getCityFromText(message)
         weather = Weather(city)
         return weather.formatResponse()
 
   async def send_message(self, message):
-    try:
+    # try:
       bot_response = self.handle_response(message.content)
       await message.channel.send(bot_response['content'], embed=bot_response['embed'])
-    except Exception as error:
-      print('Error:', error)
+    # except Exception as error:
+      # print('Error:', error)

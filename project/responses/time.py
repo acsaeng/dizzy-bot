@@ -1,34 +1,36 @@
-import os
-from dotenv import load_dotenv
-import requests
-
-load_dotenv()
+from datetime import date, datetime
+import discord
+import api
+import constants
 
 class Time:
   def __init__(self, city):
     self.city = city
     self.country = None
-    self.datetime = None
+    self.date = None
+    self.time = None
 
     self.__getLocalTime()
   
   def __getLocalTime(self):
-    response = requests.get(os.getenv('WEATHER_API_URL'), params={
-      'key': os.getenv('WEATHER_API_API_KEY'),
-      'q': self.city
-    }).json()
+    geocoding_response = api.getGeocodingDataByCity(self.city)
 
-    print('response', response)
+    if geocoding_response:
+      self.city = geocoding_response['name']
+      self.country = geocoding_response['country']
 
-    self.city = response['location']['name']
-    self.country = response['location']['country']
-    self.datetime = response['locaiton']['localtime']
+      world_time_response = api.getWorldTimeDataByCity(geocoding_response['latitude'], geocoding_response['longitude'])
+                                                      
+      # Converting date and time to MM, DD, YYYY and HH:MM formats
+      date_list = list(map(int, world_time_response['datetime'].split()[0].split('-')))
+      self.date = date(day=date_list[2], month=date_list[1], year=date_list[0]).strftime('%B %#d, %Y')
+      self.time = datetime.strptime(world_time_response['datetime'].split()[1], '%H:%M:%S').strftime('%I:%M %p')
 
   def formatResponse(self):
-    if (self.city and self.datetime):
-      return f'The time in {self.city} is {self.datetime}'
+    if self.city and self.time:
+      embed = discord.Embed(title=self.time)
+      embed.add_field(name=self.date, value=f'{self.city}, {self.country}')
+      embed.set_thumbnail(url=constants.TIME_ICON_URL)
+      return { 'content': f'{constants.TIME_RESPONSE_SUCCESS} {self.city}', 'embed': embed }
     else:
-      return "Sorry I couldn't find the time. Please try another city."
-    
-
-time = Time('Oslo')
+      return { 'content': constants.TIME_RESPONSE_ERROR, 'embed': None }
