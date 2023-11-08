@@ -19,3 +19,21 @@ MUSIC_PLAYLISTS = [
   'https://open.spotify.com/playlist/37i9dQZF1DX9tPFwDMOaN1?si=add16baccdf04450'
 ]
 MUSIC_RESPONSE_ERROR = "Sorry, I'm really not in the mood right now :sweat: \nLet's do it another time :musical_note:"
+
+HOCKEY_SCORES_KEYWORDS = ['hockey', 'hockey score', 'hockey scores', 'nhl']
+GAME_STATUS = {
+ 'FINAL': 'FINAL',
+ 'LIVE': 'LIVE',
+ 'PREVIEW': 'PREVIEW',
+ 'POSTPONED': 'POSTPONED',
+}
+GAME_STATUS_LABEL = {
+  'FINAL': 'Final',
+  'POSTPONED': 'Postponed',
+}
+FINAL_SUFFIX = {
+  'OVERTIME': ' (OT)',
+  'SHOOTOUT': ' (SO)',
+}
+GAME_TIMEZONE = 'US/Eastern'
+GAME_TIMEZONE_SUFFIX = '(ET)'

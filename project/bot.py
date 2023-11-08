@@ -4,6 +4,7 @@ import discord
 from responses.time import Time
 from responses.weather import Weather
 from responses.music import Music
+from responses.hockey_scores import HockeyScores
 import helpers
 import constants
 
@@ -32,22 +33,33 @@ class DizzyBot:
   def handle_response(self, message):
     user_message_lower = message.lower()
 
+    # Add help message
     if constants.BOT_NAME in user_message_lower:
       if any(word in user_message_lower for word in constants.TIME_KEYWORDS):
-        city = helpers.getCityFromText(message)
+        city = helpers.get_city_from_text(message)
         time = Time(city)
-        return time.formatResponse()
+        return time.format_response()
       elif any(word in user_message_lower for word in constants.WEATHER_KEYWORDS):
-        city = helpers.getCityFromText(message)
+        city = helpers.get_city_from_text(message)
         weather = Weather(city)
-        return weather.formatResponse()
+        return weather.format_response()
       elif any(word in user_message_lower for word in constants.MUSIC_KEYWORDS):
         music = Music()
-        return music.formatResponse()
+        return music.format_response()
+      elif any(word in user_message_lower for word in constants.HOCKEY_SCORES_KEYWORDS):
+        hockey_scores = HockeyScores()
+        return hockey_scores.format_response()
+      else:
+        # Sorry message
+        return {}
+    
+    return None
 
   async def send_message(self, message):
-    # try:
+    try:
       bot_response = self.handle_response(message.content)
-      await message.channel.send(bot_response['content'], embed=bot_response['embed'])
-    # except Exception as error:
-      # print('Error:', error)
+
+      if bot_response:
+        await message.channel.send(bot_response['content'], embeds=bot_response['embeds'])
+    except Exception as error:
+      print('Error:', error)
