@@ -4,7 +4,7 @@
 
 ## Summary
 
-Dizzy Bot is your Discord bot assistant that can provide a variety of information such as world time, weather forcast, music recommendation, and hockey scores.
+Dizzy Bot is your Discord bot assistant that can provide a variety of information such as world time, weather forcast, music recommendations, and hockey scores.
 
 To run the bot locally:
 
