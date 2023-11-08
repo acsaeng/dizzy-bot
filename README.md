@@ -9,5 +9,6 @@ Dizzy Bot is your Discord bot assistant that can provide a variety of informatio
 To run the bot locally:
 
 - Add [Dizzy Bot](https://discord.com/oauth2/authorize?client_id=1169121939869147166&permissions=2183991392320&scope=bot) to a Discord server
+- Install libraries/packages (in `requirements.txt`) and add API keys (in an `.env` file)
 - Run `project/main.py`
 - Type `'Dizzy help'` to get a list of available commands
