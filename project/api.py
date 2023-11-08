@@ -1,12 +1,20 @@
 import os
 from dotenv import load_dotenv
 import requests
+import pycountry
 
 load_dotenv()
 
 def get_geocoding_data_by_city(city):
   response = requests.get(os.getenv('API_NINJAS_GEOCODING_URL') + (city or ''), headers={ 'X-Api-Key': os.getenv('API_NINJAS_API_KEY') })
-  return response.json()[0] if response.status_code == requests.codes['ok'] else {}
+  
+  if response.status_code == requests.codes['ok']:
+    # Get full country name
+    response = response.json()[0]
+    response['country'] = pycountry.countries.get(alpha_2=response['country']).name
+    return response
+
+  return {}
 
 
 def get_world_time_data_by_location(lat, lon):

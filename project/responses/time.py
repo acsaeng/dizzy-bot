@@ -16,7 +16,6 @@ class Time:
     geocoding_response = api.get_geocoding_data_by_city(self.city)
 
     if geocoding_response:
-      self.city = geocoding_response['name']
       self.country = geocoding_response['country']
 
       world_time_response = api.get_world_time_data_by_location(geocoding_response['latitude'], geocoding_response['longitude'])

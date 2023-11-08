@@ -33,33 +33,29 @@ class DizzyBot:
   def handle_response(self, message):
     user_message_lower = message.lower()
 
-    # Add help message
-    if constants.BOT_NAME in user_message_lower:
-      if any(word in user_message_lower for word in constants.TIME_KEYWORDS):
-        city = helpers.get_city_from_text(message)
-        time = Time(city)
-        return time.format_response()
-      elif any(word in user_message_lower for word in constants.WEATHER_KEYWORDS):
-        city = helpers.get_city_from_text(message)
-        weather = Weather(city)
-        return weather.format_response()
-      elif any(word in user_message_lower for word in constants.MUSIC_KEYWORDS):
-        music = Music()
-        return music.format_response()
-      elif any(word in user_message_lower for word in constants.HOCKEY_SCORES_KEYWORDS):
-        hockey_scores = HockeyScores()
-        return hockey_scores.format_response()
-      else:
-        # Sorry message
-        return {}
-    
-    return None
+    if any(word in user_message_lower for word in constants.TIME_KEYWORDS):
+      city = helpers.get_city_from_text(message)
+      time = Time(city)
+      return time.format_response()
+    elif any(word in user_message_lower for word in constants.WEATHER_KEYWORDS):
+      city = helpers.get_city_from_text(message)
+      weather = Weather(city)
+      return weather.format_response()
+    elif any(word in user_message_lower for word in constants.MUSIC_KEYWORDS):
+      music = Music()
+      return music.format_response()
+    elif any(word in user_message_lower for word in constants.HOCKEY_SCORES_KEYWORDS):
+      hockey_scores = HockeyScores()
+      return hockey_scores.format_response()
+    elif constants.HELP_KEYWORD in user_message_lower:
+      return { 'content': constants.HELP_RESPONSE, 'embeds': None }
+    else:
+      return { 'content': constants.SORRY_RESPONSE, 'embeds': None }
 
   async def send_message(self, message):
     try:
-      bot_response = self.handle_response(message.content)
-
-      if bot_response:
+      if constants.BOT_NAME in message.content.lower():
+        bot_response = self.handle_response(message.content)
         await message.channel.send(bot_response['content'], embeds=bot_response['embeds'])
     except Exception as error:
       print('Error:', error)

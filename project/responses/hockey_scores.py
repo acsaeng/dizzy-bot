@@ -2,7 +2,6 @@ import discord
 from datetime import datetime
 from pytz import timezone
 import api
-import helpers
 import constants
 
 class HockeyScores:
@@ -49,13 +48,16 @@ class HockeyScores:
             embed_status_field['name'] += constants.FINAL_SUFFIX['OVERTIME']
           elif hockey_score['score'].get('shootout'):
             embed_status_field['name'] += constants.FINAL_SUFFIX['SHOOTOUT']
+        
         elif game_status == constants.GAME_STATUS['LIVE']:
           embed_status_field['name'] = hockey_score['status']['progress']['currentPeriodTimeRemaining']['pretty'].title()
           embed_status_field['value'] = hockey_score['status']['progress']['currentPeriodOrdinal']
+
         elif game_status == constants.GAME_STATUS['PREVIEW']:
           time = datetime.fromisoformat(hockey_score['start_time']).astimezone(timezone(constants.GAME_TIMEZONE)).strftime('%I:%M %p')
-          embed_status_field['name'] = ''
-          embed_status_field['value'] = f'{time} {constants.GAME_TIMEZONE_SUFFIX}'
+          embed_status_field['name'] = f'{time} {constants.GAME_TIMEZONE_SUFFIX}'
+          embed_status_field['value'] = ''
+
         elif game_status == constants.GAME_STATUS['POSTPONED']:
           embed_status_field['name'] = constants.GAME_STATUS_LABEL['POSTPONED']
           embed_status_field['value'] = ''
@@ -63,7 +65,7 @@ class HockeyScores:
         embed.add_field(name=embed_status_field['name'], value=embed_status_field['value'])
         embeds.append(embed)
       
-      return { 'content': 'Here are the current hockey scores', 'embeds': embeds }
+      return { 'content': constants.HOCKEY_SCORES_RESPONSE_SUCCESS, 'embeds': embeds }
     
     else:
-      return { 'content': '', 'embeds': None }
+      return { 'content': constants.HOCKEY_SCORES_RESPONSE_ERROR, 'embeds': None }

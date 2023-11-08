@@ -19,13 +19,10 @@ class Weather:
     geocoding_response = api.get_geocoding_data_by_city(self.city)
 
     if geocoding_response:
-      self.city = geocoding_response['name']
       self.country = geocoding_response['country']
-    
       weather_response = api.get_weather_data_by_location(geocoding_response['latitude'], geocoding_response['longitude'])
 
       if weather_response:
-        self.country = weather_response['location']['country']  
         self.temperature = round(weather_response['current']['temp_c'])
         self.condition = weather_response['current']['condition']['text']
         self.precipitation = round(weather_response['current']['precip_mm'])
