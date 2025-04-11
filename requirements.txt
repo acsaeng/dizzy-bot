@@ -1,29 +1,6 @@
-aiohttp==3.8.6
-aiosignal==1.3.1
-async-timeout==4.0.3
-attrs==23.1.0
-Brotli @ file:///C:/ci_311/brotli-split_1676435766766/work
-cchardet @ file:///C:/b/abs_63f5b8zxp9/croot/cchardet_1683054562010/work
-certifi==2023.7.22
-cffi @ file:///C:/ci_311/cffi_1676423759166/work
-chardet @ file:///C:/ci_311/chardet_1676436134885/work
-charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
-click @ file:///C:/b/abs_f9ihnt72pu/croot/click_1698129847492/work
-colorama @ file:///C:/ci_311/colorama_1676422310965/work
-cryptography @ file:///C:/b/abs_f4do8t8jfs/croot/cryptography_1694444424531/work
-discord==2.3.2
-discord.py==2.3.2
-frozenlist==1.4.0
+discord.py==2.5.2
 geotext==0.4.0
-idna @ file:///C:/ci_311/idna_1676424932545/work
-multidict==6.0.4
-pycountry @ file:///home/conda/feedstock_root/build_artifacts/pycountry_1668531524445/work
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
-pyOpenSSL @ file:///C:/b/abs_08f38zyck4/croot/pyopenssl_1690225407403/work
-PySocks @ file:///C:/ci_311/pysocks_1676425991111/work
-python-dotenv @ file:///C:/ci_311/python-dotenv_1676455170580/work
-pytz @ file:///C:/b/abs_19q3ljkez4/croot/pytz_1695131651401/work
-requests @ file:///C:/b/abs_316c2inijk/croot/requests_1690400295842/work
-urllib3 @ file:///C:/b/abs_9cmlsrm3ys/croot/urllib3_1698257595508/work
-win-inet-pton @ file:///C:/ci_311/win_inet_pton_1676425458225/work
-yarl==1.9.2
+pycountry==24.6.1
+python-dotenv==1.1.0
+pytz==2025.2
+Requests==2.32.3
