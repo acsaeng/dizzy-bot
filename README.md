@@ -14,3 +14,10 @@ To run the bot locally:
 - Add [Dizzy Bot](https://discord.com/oauth2/authorize?client_id=1169121939869147166&permissions=2183991392320&scope=bot) to a Discord server
 - Type `'Dizzy help'` in the server to get a list of available commands
 - Stop the containers by executing the `docker-compose down` command once finished
+
+## Images
+
+|                                         |                                                         |
+| :-------------------------------------: | :-----------------------------------------------------: |
+|    ![World Time](img/world-time.png)    |      ![Weather forecast](img/weather-forecast.png)      |
+| ![Hockey scores](img/hockey-scores.png) | ![Music recommendations](img/music-recommendations.png) |

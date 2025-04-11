@@ -20,18 +20,18 @@ To get started, you can ask me one of the following commands:
 
 SORRY_RESPONSE = "Sorry, I couldn't understand your request. Please ask something else or ask me for help to get a list of the available commands. :mag_right:"
 
-# Date & time constants
+# World time constants
 TIME_KEYWORDS = ['time']
 TIME_RESPONSE_SUCCESS = 'Here is the current time in'
 TIME_ICON_URL = 'https://cdn3.emoji.gg/emojis/7611-clock.png'
 TIME_RESPONSE_ERROR = 'Sorry, I could not find the time. Please try another city :alarm_clock:'
 
-# Weather constants
+# Weather forecast constants
 WEATHER_KEYWORDS = ['weather', 'temperature', 'forecast']
 WEATHER_RESPONSE_SUCCESS = 'Here is the current weather forecast in'
 WEATHER_RESPONSE_ERROR = 'Sorry, I could not find the weather forecast. Please try another city. :white_sun_cloud:'
 
-# Music constants
+# Music recommendation constants
 MUSIC_KEYWORDS = ['music', 'song', 'spotify']
 MUSIC_RESPONSE_SUCCESS = ["Here's a fave playlist of mine! :musical_note:",
                           'Time to party with this playlist! :partying_face:', 
