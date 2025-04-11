@@ -1,0 +1,4 @@
+services:
+  dizzy-bot:
+    container_name: dizzy-bot
+    build: ./
