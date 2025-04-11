@@ -17,7 +17,28 @@ To run the bot locally:
 
 ## Images
 
-|                                         |                                                         |
-| :-------------------------------------: | :-----------------------------------------------------: |
-|    ![World Time](img/world-time.png)    |      ![Weather forecast](img/weather-forecast.png)      |
-| ![Hockey scores](img/hockey-scores.png) | ![Music recommendations](img/music-recommendations.png) |
+<table align="center">
+  <tr align="center">
+    <td>
+      <b>World Time</b>
+      <br>
+      <img alt="World time" src="img/world-time.png" height="200">
+    </td>
+    <td>
+      <b>Weather Forecast</b>
+      <br>
+      <img alt="Weather forecast" src="img/weather-forecast.png" height="200"></td>
+  </tr>
+  <tr align="center">
+    <td>
+      <b>Music Recommendations</b>
+      <br>
+      <img alt="Music recommendations" src="img/music-recommendations.png" height="300">
+    </td>
+    <td>
+      <b>Hockey Scores</b>
+      <br>
+      <img alt="Hockey scores" src="img/hockey-scores.png" height="300">
+    </td>
+  </tr>
+</table>
