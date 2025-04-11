@@ -2,3 +2,11 @@ services:
   dizzy-bot:
     container_name: dizzy-bot
     build: ./src
+    environment:
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - WEATHER_API_API_KEY=${WEATHER_API_API_KEY}
+      - WEATHER_API_URL=${WEATHER_API_URL}
+      - API_NINJAS_API_KEY=${API_NINJAS_API_KEY}
+      - API_NINJAS_GEOCODING_URL=${API_NINJAS_GEOCODING_URL}
+      - API_NINJAS_WORLD_TIME_URL=${API_NINJAS_WORLD_TIME_URL}
+      - NHL_SCORE_API_URL=${NHL_SCORE_API_URL}
