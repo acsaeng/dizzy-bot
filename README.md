@@ -12,7 +12,7 @@ Dizzy Bot is your Discord virtual assistant bot that can provide a variety of in
       <th>World Time</th>
     </tr>
     <tr>
-      <td><img width="500" alt="Payments tab" src="./img/world-time.png" /></td>
+      <td><img width="300" alt="Payments tab" src="./img/world-time.png" /></td>
     </tr>
   </tbody>
 </table>
@@ -23,7 +23,7 @@ Dizzy Bot is your Discord virtual assistant bot that can provide a variety of in
       <th>Weather Forecast</th>
     </tr>
     <tr>
-      <td><img width="500" alt="Payments tab" src="./img/weather-forecast.png" /></td>
+      <td><img width="300" alt="Payments tab" src="./img/weather-forecast.png" /></td>
     </tr>
   </tbody>
 </table>
@@ -34,7 +34,7 @@ Dizzy Bot is your Discord virtual assistant bot that can provide a variety of in
       <th>Music Recommendations</th>
     </tr>
     <tr>
-      <td><img width="500" alt="Payments tab" src="./img/music-recommendations.png" /></td>
+      <td><img width="300" alt="Payments tab" src="./img/music-recommendations.png" /></td>
     </tr>
   </tbody>
 </table>
@@ -45,7 +45,7 @@ Dizzy Bot is your Discord virtual assistant bot that can provide a variety of in
       <th>Hockey Scores</th>
     </tr>
     <tr>
-      <td><img width="500" alt="Payments tab" src="./img/hockey-scores.png" /></td>
+      <td><img width="300" alt="Payments tab" src="./img/hockey-scores.png" /></td>
     </tr>
   </tbody>
 </table>
